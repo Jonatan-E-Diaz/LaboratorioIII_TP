@@ -1,6 +1,7 @@
 package ar.edu.utn.frbb.tup.Cuentas;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 import ar.edu.utn.frbb.tup.Clientes.*;
 import ar.edu.utn.frbb.tup.Movimientos.Movimiento;
@@ -122,10 +123,27 @@ public class MenuCuentas {
     }
     
     private void mostrarTodasCuentas() {
-        System.out.println("\n-- Mostrar Todas las Cuentas --");
-        for (Cuenta cuenta : cuentaLista.getCuentas()) {
-            System.out.println(cuenta); 
+    System.out.println("\n-- Mostrar Todas las Cuentas --");
+    List<Cuenta> cuentas = cuentaLista.getCuentas();
+    if (cuentas.isEmpty()) {
+        System.out.println("No hay cuentas registradas.");
+    } else {
+        System.out.println("Número de Cuenta | Cliente | Tipo de Cuenta | Saldo | Fecha de Apertura");
+        System.out.println("-------------------------------------------------------------------------------");
+        for (Cuenta cuenta : cuentas) {
+            try {
+                System.out.printf("%-17d | %-7s | %-15s | %-6.2f | %tF%n",
+                        cuenta.getNumeroCuenta(),
+                        cuenta.getCliente().getNombre(),
+                        cuenta.getTipoCuenta(),
+                        cuenta.getSaldo(),
+                        cuenta.getFechaApertura());
+            } catch (NullPointerException e) {
+                System.out.println("Error: Datos de cuenta incompletos.");
+            }
         }
     }
+}
+
 }
 
