@@ -1,5 +1,6 @@
 package ar.edu.utn.frbb.tup.Movimientos;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Movimiento {
@@ -56,12 +57,12 @@ public class Movimiento {
     // Método toString
     @Override
     public String toString() {
-        return "Movimiento{" +
-                "fechaHora=" + fechaHora +
-                ", tipoOperacion='" + tipoOperacion + '\'' +
-                ", monto=" + monto +
-                ", numeroCuenta=" + numeroCuenta +
-                '}';
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String fechaFormateada = formatoFecha.format(fechaHora);
+        return "Movimiento: " +
+                "\nFecha y Hora: " + fechaFormateada +
+                "\nTipo de Operación: " + tipoOperacion +
+                "\nMonto: $" + monto +
+                "\nNúmero de Cuenta: " + numeroCuenta;
     }
 }
-
