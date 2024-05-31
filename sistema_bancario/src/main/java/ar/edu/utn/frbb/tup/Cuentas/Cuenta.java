@@ -78,6 +78,7 @@ public class Cuenta {
         }
         this.saldo = saldo;
     }
+    
 
     public Date getFechaApertura() {
         return fechaApertura;
